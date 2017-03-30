@@ -1,0 +1,25 @@
+src/caffe/layers/crf3_loss_layer.cpp:172:	const Dtype* bottom_data = bottom->cpu_data();
+src/caffe/layers/crf3_loss_layer.cpp:175:	const int dim = bottom->height() * bottom->width();
+src/caffe/layers/crf3_loss_layer.cpp:179:	for (int n = 0; n < bottom->num(); n++){
+src/caffe/layers/crf3_loss_layer.cpp:182:		const Dtype* bottom_data_n = bottom_data + bottom->offset(n);
+src/caffe/layers/crf3_loss_layer.cpp:302:	const Dtype* bottom_data = bottom->cpu_data();
+src/caffe/layers/crf2_loss_layer.cu:92:	const Dtype* bottom_data = bottom->gpu_data();
+src/caffe/layers/crf2_loss_layer.cu:94:	const int dim = bottom->height() * bottom->width();
+src/caffe/layers/crf2_loss_layer.cu:98:	for (int n = 0; n < bottom->num(); n++){
+src/caffe/layers/crf2_loss_layer.cu:100:		for (int c = 0; c < bottom->channels(); c++){
+src/caffe/layers/crf2_loss_layer.cu:101:			const Dtype* bottom_data_nc = bottom_data + bottom->offset(n, c);
+src/caffe/layers/crf2_loss_layer.cu:151:	const Dtype* bottom_data = bottom->gpu_data();
+src/caffe/layers/crf2_loss_layer.cpp:192:	const Dtype* bottom_data = bottom->cpu_data();
+src/caffe/layers/crf2_loss_layer.cpp:194:	const int dim = bottom->height() * bottom->width();
+src/caffe/layers/crf2_loss_layer.cpp:198:	for (int n = 0; n < bottom->num(); n++){
+src/caffe/layers/crf2_loss_layer.cpp:200:		for (int c = 0; c < bottom->channels(); c++){
+src/caffe/layers/crf2_loss_layer.cpp:201:			const Dtype* bottom_data_nc = bottom_data + bottom->offset(n, c);
+src/caffe/layers/crf2_loss_layer.cpp:324:	const Dtype* bottom_data = bottom->cpu_data();
+src/caffe/layers/crf_unary_loss_layer.cpp:183:	caffe_cpu_scale(bottom->count(), alpha_, bottom->cpu_data(), R_.mutable_cpu_data());
+src/caffe/layers/crf_unary_loss_layer.cu:124:	caffe_gpu_scale(bottom->count(), Dtype(alpha_), bottom->gpu_data(), R_.mutable_gpu_data());
+src/caffe/layers/crf3_loss_layer.cu:93:	const Dtype* bottom_data = bottom->gpu_data();
+src/caffe/layers/crf3_loss_layer.cu:95:	const int dim = bottom->height() * bottom->width();
+src/caffe/layers/crf3_loss_layer.cu:99:	for (int n = 0; n < bottom->num(); n++){
+src/caffe/layers/crf3_loss_layer.cu:101:		const Dtype* bottom_data_n = bottom_data + bottom->offset(n);
+src/caffe/layers/crf3_loss_layer.cu:146:	const Dtype* bottom_data = bottom->gpu_data();
+src/caffe/proto/caffe.proto:1160:  // kernel_h = bottom->height and kernel_w = bottom->width
