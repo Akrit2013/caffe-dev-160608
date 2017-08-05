@@ -1468,6 +1468,9 @@ message PixelwiseLossParameter {
 	// restrict the radius may avoid the large edge diff under certain situation
 	// Only valid when larger than 0
 	optional float radius = 15 [default = -1];
+
+	// This option force the z > 0 during the TEST, z = fabs(z)
+	optional bool force_z_positive = 16 [default = false];
 }
 
 // Added by YanHan

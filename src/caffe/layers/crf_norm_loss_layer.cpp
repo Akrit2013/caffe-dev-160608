@@ -418,6 +418,7 @@ void CrfNormLossLayer<Dtype>::Calc_R_cpu(const vector<Blob<Dtype>*>& bottom){
 				
 				// Set the R matrix
 				R_data[idx1] = -cos_val*w1_-distsq*w2_-proj_diff*w3_;
+//                LOG(INFO)<<"a1:"<<cos_val<<"a2:"<<distsq<<"a3:"<<proj_diff;
 				R_data[idx2] = R_data[idx1];
 			}
 		}

@@ -125,7 +125,8 @@ __global__ void Pixelwise_inference_kernel(
 		 const Dtype f_,
 		 const Dtype z_thd,
 		 const bool use_gradient,
-		 const bool train_phase){
+		 const bool train_phase,
+		 const bool force_z_positive){
 	CUDA_KERNEL_LOOP(index, nthreads){
 		const int n = index / height;
 		const int h = index % height;
@@ -161,6 +162,10 @@ __global__ void Pixelwise_inference_kernel(
 					}else{
 						valid_norm = false;
 					}
+				}
+
+				if (!train_phase && force_z_positive){
+					z = fabs(z);
 				}
 				dx = - x / z;
 				dy = - y / z;
@@ -826,7 +831,8 @@ void PixelwiseLossLayer<Dtype>::Pixelwise_inference_gpu(const vector<Blob<Dtype>
 		 f_,
 		 z_thd_,
 		 use_gradient_,
-		 this->phase_ == TRAIN);
+		 this->phase_ == TRAIN,
+		 force_z_positive_);
 	CUDA_POST_KERNEL_CHECK;
 
 }

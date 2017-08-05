@@ -117,6 +117,11 @@ void PixelwiseLossLayer<Dtype>::LayerSetUp(
 	}else{
 		has_radius_ = false;
 	}
+	if(loss_param.has_force_z_positive()){
+		force_z_positive_ = loss_param.force_z_positive();
+	}else{
+		force_z_positive_ = false;
+	}
 
 
 	if(loss_param.has_c_rate_mode()){
@@ -588,6 +593,9 @@ void PixelwiseLossLayer<Dtype>::Pixelwise_inference_cpu(const vector<Blob<Dtype>
 						}
 					}	
 
+					if (this->phase_ == TEST && force_z_positive_){
+						z = fabs(z);
+					}
 					dx = - x / z;
 					dy = - y / z;
 				}

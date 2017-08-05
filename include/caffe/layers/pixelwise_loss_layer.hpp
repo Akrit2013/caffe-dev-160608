@@ -135,6 +135,9 @@ class PixelwiseLossLayer : public LossLayer<Dtype> {
   bool  has_min_label_;
   bool  has_max_label_;
 
+  // If z=fabs(z) during the TEST
+  bool force_z_positive_;
+
   // The learning rate of the z in surface normal bp
   Dtype lr_z_;
 
