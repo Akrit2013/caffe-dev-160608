@@ -35,6 +35,7 @@ YanHan's Modification:
 29. NormCorrMatLayer: Generate the superpixel normal correlation matrix
 30. PixelwiseLossLayer: Change the superpixel wise prediction into the pixelwise prediction, and BP the surface normal diff
 31. GradToNormLayer: This layer convert the gradient input bottom into the surface normal, the input bottom shape is [n, 3, x, x], and the output shape is [n, 2, x, x], it contains both forward and backward functions.
+32.DepthToNormLayer: This layer convert the depth map to surface normal map, the input bottom shape is [n, 1, h, w], and the output shape is [n, 3, h, w], it only contains forward function
 
 # Caffe
 

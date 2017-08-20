@@ -422,6 +422,7 @@ message LayerParameter {
   optional DistCorrMatParameter dist_corr_mat_param = 223;			// Added by YanHan
   optional DistCosCorrMatParameter distcos_corr_mat_param = 224;	// Added by YanHan
   optional PixelwiseLossParameter pixelwise_loss_param = 225;				// Added by YanHan
+  optional DepthToNormParameter depth2norm_param = 226;			// Added by YanHan
   optional PowerParameter power_param = 122;
   optional PReLUParameter prelu_param = 131;
   optional PythonParameter python_param = 130;
@@ -1390,6 +1391,15 @@ message DistCorrMatParameter {
 	optional float width = 3;
 }
 
+
+// Added by YanHan
+// Convert the depth map to surface normal map
+// bottom[0]: The input pixel wise depth map, shape [b, 1, h, w]
+// top[0]: The output pixel wise surface normal map, shape [b, 3, h, w]
+message DepthToNormParameter {
+	// The radius to calc the surface normal map according to the depth
+	optional int32 radius = 1 [default = 2];
+}
 
 // Added by YanHan
 // This layer project the superpixel wise depth prediction into pixel wise, and BP the surface normal
