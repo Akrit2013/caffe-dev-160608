@@ -12,6 +12,7 @@ __global__ void Forward_gpu_kernel(const int nthreads,
     const Dtype* const bottom_data,
 	Dtype* top_data,
 	const int radius,
+	const Dtype focal,
 	const int num,
 	const int height,
 	const int width){
@@ -34,9 +35,9 @@ __global__ void Forward_gpu_kernel(const int nthreads,
 		  const int wl = max(0, w - radius);
 		  const int wr = min(width - 1, w + radius);
 		  const Dtype ws = wr - wl;
-		  Dtype x = (bottom_data[bottom_idx + wr] - bottom_data[bottom_idx + wl]) / ws;
-		  Dtype y = (bottom_data[bottom_idx_hd + w] - bottom_data[bottom_idx_hu + w]) / hs;
-		  Dtype z = 1;
+		  Dtype x = (bottom_data[bottom_idx + wl] - bottom_data[bottom_idx + wr]) / ws;
+		  Dtype y = (bottom_data[bottom_idx_hu + w] - bottom_data[bottom_idx_hd + w]) / hs;
+		  Dtype z = 1.0 / focal;
 
 		  // Normalize the [x, y, z]
 		  const Dtype norm = sqrt(x*x+y*y+z*z);
@@ -71,7 +72,7 @@ void DepthToNormLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
   const int num_kernels = num * height;
 
   Forward_gpu_kernel<Dtype><<<CAFFE_GET_BLOCKS(num_kernels), CAFFE_CUDA_NUM_THREADS>>>(
-		  num_kernels, bottom_data, top_data, radius, num, height, width);
+		  num_kernels, bottom_data, top_data, radius, focal, num, height, width);
   CUDA_POST_KERNEL_CHECK;
 }
 

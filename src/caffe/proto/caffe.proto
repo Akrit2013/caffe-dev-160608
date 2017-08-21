@@ -1399,6 +1399,8 @@ message DistCorrMatParameter {
 message DepthToNormParameter {
 	// The radius to calc the surface normal map according to the depth
 	optional int32 radius = 1 [default = 2];
+	// The pixel wise focal length of the image
+	optional float focal = 2;
 }
 
 // Added by YanHan

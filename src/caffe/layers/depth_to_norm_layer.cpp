@@ -25,6 +25,12 @@ void DepthToNormLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
 	  radius = 2;
   }
 
+  if (depth2norm_param.has_focal()){
+	  focal = depth2norm_param.focal();
+  }else{
+	  LOG(FATAL) << "The pixel-wise focal length must be set";
+  }
+
 }
 
 template <typename Dtype>
@@ -61,7 +67,7 @@ void DepthToNormLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 			  const int bottom_idx_hd = bottom[0]->offset(n, 0, hd, w);
 			  Dtype dx = (bottom_data[bottom_idx_wl] - bottom_data[bottom_idx_wr]) / ws;
 			  Dtype dy = (bottom_data[bottom_idx_hu] - bottom_data[bottom_idx_hd]) / hs;
-			  Dtype dz = 1;
+			  Dtype dz = 1.0 / focal;
 			  normalize(dx, dy, dz);
 
 			  top_data[top_idx] = dx;

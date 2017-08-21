@@ -48,6 +48,7 @@ class DepthToNormLayer : public Layer<Dtype> {
  protected:
   // The radius to calc the normal from depth map
   int radius;
+  Dtype focal;
 
 };
 
