@@ -39,12 +39,11 @@ class DepthToNormLayer : public Layer<Dtype> {
       const vector<Blob<Dtype>*>& top);
   // Normalize the surface normal
   void normalize(Dtype& x, Dtype& y, Dtype& z);
-  /*
+
   virtual void Backward_cpu(const vector<Blob<Dtype>*>& top,
-      const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom);
+      const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom){}
   virtual void Backward_gpu(const vector<Blob<Dtype>*>& top,
-      const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom);
-	  */
+      const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom){}
 
  protected:
   // The radius to calc the normal from depth map

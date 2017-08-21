@@ -43,13 +43,11 @@ void DepthToNormLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   const int stride = bottom[0]->count(2);
   const int height = bottom[0]->height();
   const int width = bottom[0]->width();
-  int r = radius;
 
   // Iter the pixels
   for (int n = 0; n < bottom[0]->num(); n++){
 	  for (int h = 0; h < bottom[0]->height(); h++){
 		  for (int w = 0; w < bottom[0]->width(); w++){
-			  const int bottom_idx = bottom[0]->offset(n, 0, h, w);
 			  const int top_idx = top[0]->offset(n, 0, h, w);
 			  const int wl = max(0, w - radius);
 			  const int wr = min(width - 1, w + radius);

@@ -57,6 +57,7 @@ __global__ void Forward_gpu_kernel(const int nthreads,
   }
 }
 
+template <typename Dtype>
 void DepthToNormLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top) {
   const Dtype* bottom_data = bottom[0]->gpu_data();
